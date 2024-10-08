@@ -5,7 +5,7 @@
   <artifactId>tpdaobd</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>tpdaobd</name>
+  <name>tpdaobd_ET</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
@@ -32,6 +32,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
-    
+
+  
 </project>

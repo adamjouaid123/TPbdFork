@@ -1,7 +1,7 @@
 Cette application type présente comment accéder à une source de données en isolant l'accès bas niveau dans des classes **DAO** (Data Access Object).
 
 C'est un projet Maven à récupérer sur gitlab.
-Il nécessite Java 17, Maven, et un éditeur de type Visual Studio Code (ou autres))
+Il nécessite Java 17 ou plus, Maven, et un éditeur de type Visual Studio Code (ou autres))
 
 Vous aurez à compléter le code des DAO et des services. Les tests des services sont déjà opérationnels.
 Le modèle de données est ici très simple:
