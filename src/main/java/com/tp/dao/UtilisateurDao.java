@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import com.tp.data.Utilisateur;
 
-
 public class UtilisateurDao {
 
     private Connection connection; // L'objet de connexion à la base de données
@@ -31,20 +30,49 @@ public class UtilisateurDao {
 
     // Méthode pour récupérer un utilisateur par son ID
     public Utilisateur getById(int id) throws SQLException {
-        // A complérer
-        return null;
+        String sql = "SELECT * FROM utilisateur WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                // Créer un nouvel utilisateur avec les données récupérées
+                return new Utilisateur(
+                        resultSet.getInt("id"),
+                        resultSet.getString("nom"),
+                        resultSet.getString("prenom")
+                );
+            }
+        }
+        return null; // Retourne null si aucun utilisateur n'est trouvé
     }
 
     // Méthode pour récupérer tous les utilisateurs de la base de données
     public List<Utilisateur> getAll() throws SQLException {
         List<Utilisateur> utilisateurs = new ArrayList<>();
-        // A complérer
+        String sql = "SELECT * FROM utilisateur";
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                // Ajouter chaque utilisateur à la liste
+                utilisateurs.add(new Utilisateur(
+                        resultSet.getInt("id"),
+                        resultSet.getString("nom"),
+                        resultSet.getString("prenom")
+                ));
+            }
+        }
         return utilisateurs;
     }
 
     // Méthode pour mettre à jour un utilisateur
     public void update(Utilisateur utilisateur) throws SQLException {
-        // A complérer
+        String sql = "UPDATE utilisateur SET nom = ?, prenom = ? WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, utilisateur.getNom());
+            statement.setString(2, utilisateur.getPrenom());
+            statement.setInt(3, utilisateur.getId());
+            statement.executeUpdate();
+        }
     }
 
     // Méthode pour supprimer un utilisateur par son ID
